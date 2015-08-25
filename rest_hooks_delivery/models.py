@@ -12,6 +12,7 @@ AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 class FailedHook(models.Model):
     last_retry = models.DateTimeField(auto_now=True, editable=False,
                                       db_index=True)
+    next_retry = models.DateTimeField(editable=False, db_index=True)
     target = models.URLField('Original target URL', max_length=255,
                              editable=False, db_index=True)
     event = models.CharField('Event', max_length=64, db_index=True,
